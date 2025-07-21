@@ -8,6 +8,7 @@ import "@/styles/main.scss";
 import { ClientLayoutComponents } from '@/components/layout/ClientLayoutComponents';
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
+// Your font setup is perfect, no changes needed here.
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '700', '900'],
@@ -21,6 +22,7 @@ const roboto_mono = Roboto_Mono({
   variable: '--font-roboto-mono',
 });
 
+// Your metadata is excellent and well-structured, no changes needed.
 const siteUrl = "https://www.coderon.co.za";
 export const metadata: Metadata = {
   title: {
@@ -66,15 +68,21 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable} ${roboto_mono.variable}`}>
       <body>
         <Suspense fallback={null}>
-          <ClientLayoutComponents />
+          {/* 
+            This is the key fix: We check if the environment variable exists
+            before trying to render the Google Analytics component. This prevents
+            errors if the variable isn't set.
+          */}
+          {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+            <GoogleAnalytics />
+          )}
         </Suspense>
 
-        <main>{children}</main>
-        <Footer />
+        <ClientLayoutComponents />
         
-        <Suspense fallback={null}>
-          <GoogleAnalytics />
-        </Suspense>
+        <main>{children}</main>
+        
+        <Footer />
       </body>
     </html>
   );
