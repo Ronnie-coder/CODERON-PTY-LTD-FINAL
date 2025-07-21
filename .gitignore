@@ -1,0 +1,29 @@
+# .gitignore
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js build output
+# This is the line that solves the SWC and ".next should not be uploaded" warnings
+# Next.js
+.next
+
+# Production
+/build
+
+# Local Environment Variables
+# THIS IS THE MOST IMPORTANT LINE FOR SECURITY
+# It prevents your API keys from being uploaded to GitHub
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Misc
+.DS_Store
+*.pem

@@ -1,0 +1,83 @@
+// src/styles/_projects.scss (or keep as _impact-page.scss)
+
+@use 'variables' as *;
+
+// Grid layout for the main project listing page
+.c-project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xxl;
+  padding: $spacing-xl 0;
+}
+
+.c-project-card {
+  background-color: $color-surface;
+  border-radius: $border-radius-md;
+  border: 1px solid $color-border;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: $box-shadow-dark;
+  }
+}
+
+.c-project-card__image {
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.c-project-card__content {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; // Allows content to fill space
+}
+
+.c-project-card__client {
+  display: flex;
+  align-items: center;
+  color: $color-primary;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+}
+
+// Style for the client logo image
+.c-project-card__client-logo {
+  height: 24px; // Control logo size
+  width: auto;
+  margin-right: $spacing-sm; // Space between logo and name
+}
+
+.c-project-card__title {
+  font-size: 1.8rem;
+  color: $color-text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.c-project-card__description {
+  color: $color-text-secondary;
+  margin-bottom: $spacing-lg;
+  flex-grow: 1; // Pushes tags and button down
+}
+
+.c-project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+}
+
+.c-project-card__tag {
+  background-color: rgba($color-primary, 0.1);
+  color: $color-primary;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-sm;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
