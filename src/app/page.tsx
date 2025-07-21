@@ -3,6 +3,8 @@
 import Hero from '@/components/Hero';
 import ServicesShowcase from '@/components/ServicesShowcase';
 import ImpactSection from '@/components/ImpactSection';
+// Import our new showcase component
+import TestimonialsShowcase from '@/components/TestimonialsShowcase';
 
 
 /**
@@ -14,6 +16,8 @@ export default function HomePage() {
       <Hero />
       <ServicesShowcase />
       <ImpactSection />
+      {/* Add the new, complete section here */}
+      <TestimonialsShowcase />
     </>
   );
 }
