@@ -4,19 +4,16 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-// UPDATED: Removed FaEnvelope
+import Image from 'next/image';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   const [currentTime, setCurrentTime] = useState('');
 
   useEffect(() => {
-    // Safely sets the time only on the client-side to prevent hydration errors.
     const timer = setInterval(() => {
-      // Using a clear format, e.g., Johannesburg (SAST)
       setCurrentTime(new Date().toLocaleTimeString('en-ZA', { timeZone: 'Africa/Johannesburg', hour: '2-digit', minute: '2-digit' }));
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -24,35 +21,48 @@ const Footer = () => {
 
   return (
     <footer className="c-footer">
-      <div className="c-footer__content">
-        {/* Row 1: Social Media Icons */}
-        <div className="c-footer__social">
-          <a href="https://github.com/Ronnie-coder" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <FaGithub />
-          </a>
-          <a href="https://www.linkedin.com/in/coderon-coderon-8b302b360" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <FaLinkedin />
-          </a>
-          <a href="https://x.com/Coderon28" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)">
-            <FaTwitter />
-          </a>
-        </div>
-
-        {/* Row 2: Legal Links */}
-        <div className="c-footer__links">
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/terms-of-service">Terms of Service</Link>
-        </div>
-
-        {/* Row 3: Copyright, Registration, and Clock */}
-        <div className="c-footer__bottom-bar">
-          <div className="c-footer__legal-info">
-            <span>&copy; {currentYear} Coderon.</span>
-            {/* ADDED: Company Registration Number */}
-            <span>Reg: 2025 / 482790 / 07</span>
+      <div className="c-footer__container">
+        {/* === COLUMN 1: LEGAL, COPYRIGHT & CLOCK === */}
+        <div className="c-footer__legal">
+          <p className="c-footer__copyright">&copy; {currentYear} Coderon (Pty) Ltd.</p>
+          <div className="c-footer__links">
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/terms-of-service">Terms of Service</Link>
           </div>
+          {/* FIX: Clock moved here to the left, it will not be blocked */}
           <div className="c-footer__clock" aria-label="Current time in Johannesburg">
-            {currentTime} SAST
+            {currentTime && `${currentTime} SAST`}
+          </div>
+        </div>
+
+        {/* === COLUMN 2: TRUST BADGE & REGISTRATION NUMBER === */}
+        <div className="c-footer__trust-badge">
+          <p className="c-footer__trust-text">Verified & Registered Business</p>
+          <a 
+            href="https://www.companypartners.co.za" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="Verified by Company Partners"
+            className="c-footer__badge-link"
+          >
+            <Image 
+              src="/badges/company-partners-badge.png"
+              alt="Official Company Partners Registration Badge"
+              width={160}
+              height={53}
+              quality={90}
+            />
+          </a>
+          {/* FIX: Registration number added directly under the badge */}
+          <p className="c-footer__reg-number">Reg: 2025 / 482790 / 07</p>
+        </div>
+
+        {/* === COLUMN 3: SOCIAL LINKS === */}
+        <div className="c-footer__connect">
+          <div className="c-footer__social">
+            <a href="https://github.com/Ronnie-coder" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a>
+            <a href="https://www.linkedin.com/in/coderon-coderon-8b302b360" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
+            <a href="https://x.com/Coderon28" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><FaTwitter /></a>
           </div>
         </div>
       </div>
